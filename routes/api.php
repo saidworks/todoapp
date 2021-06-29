@@ -23,5 +23,5 @@ Route::get('/items',[ItemController::class,'index']);
 Route::prefix('/item')->group(function(){
     Route::post('/store','App\Http\Controllers\ItemController@store');
     Route::put('/{id}',[ItemController::class,'update']);
-    Route::delete('/{id}',[ItemController::class,'destroy ']);
+    Route::delete('/{id}',[ItemController::class,'destroy']);
 });

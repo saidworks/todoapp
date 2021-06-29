@@ -79,10 +79,10 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         $existingItem = Item::find( $id );
-        print_r($existingItem);
+        // print_r($existingItem);
         if($existingItem){
             $existingItem->completed = $request->item["completed"] ? true : false;
-            $existingItem->completed_at = $request->item["completed_at"] ? Carbon::now() : null;
+           $existingItem->completed_at = $request->item["completed"] ? Carbon::now() : null;
             $existingItem->save();
             return $existingItem;
         }
@@ -97,6 +97,11 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $existingItem = Item::find( $id );
+        if($existingItem){
+            $existingItem->delete();
+            return 'item deleted successfully';
+        }
+        return 'item not found.';
     }
 }
